@@ -1,12 +1,18 @@
 // Enemies our player must avoid
-var Enemy = function() {
+const allEnemies = [];
+
+var Enemy = function(x,y) {
+     this.y = y;
+     this.x = x;
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    allEnemies.push(this);
 };
+bug1 = new Enemy(0,135);
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
