@@ -1,5 +1,10 @@
 // Enemies our player must avoid
 const allEnemies = [];
+window.setInterval(function () {
+    allEnemies.push(new Enemy(0,Math.random()*550));
+    allEnemies.push(new Enemy(0, Math.random() * 550));
+    allEnemies.push(new Enemy(0, Math.random() * 550));
+}, 2000);
 
 var Enemy = function(x,y) {
      this.y = y;
@@ -12,13 +17,13 @@ var Enemy = function(x,y) {
     this.sprite = 'images/enemy-bug.png';
     allEnemies.push(this);
 };
-bug1 = new Enemy(0,135);
+
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
     
-    this.x = this.x + (Math.random() *(15 - 1 + 1)* dt*35);
+    this.x = this.x + (Math.random() *(15 - 1 + 1)* dt*25);
     this.y = this.y;
     
     // You should multiply any movement by the dt parameter
