@@ -1,9 +1,10 @@
 // Enemies our player must avoid
 const allEnemies = [];
 window.setInterval(function () {
-    allEnemies.push(new Enemy(0,Math.random()*550));
-    allEnemies.push(new Enemy(0, Math.random() * 550));
-    allEnemies.push(new Enemy(0, Math.random() * 550));
+    allEnemies.push(new Enemy(0,140));
+    allEnemies.push(new Enemy(0,60));
+    allEnemies.push(new Enemy(0,220)); 
+    allEnemies.push(new Enemy(0,300)); 
 }, 2000);
 
 var Enemy = function(x,y) {
@@ -55,10 +56,32 @@ Player.prototype.render = function()  {
 };
 
 Player.prototype.handleInput = function(e)  {
+  
+  
+        switch (e) {
+            case 'left':
+                this.x = this.x - 100
+                console.log(e);
+                break
 
+            case 'up':
+                this.y = this.y - 80
+                console.log(e);
+                break;
+
+            case 'right':
+                this.x = this.x + 100
+                console.log(e);
+                break;
+
+            case 'down':
+                this.y =  this.y + 80
+                console.log(e);
+                break;
+        } 
 };
 
-const player = new Player(50,10);
+const player = new Player(200,440);
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -75,6 +98,7 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
+  
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
