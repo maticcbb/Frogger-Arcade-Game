@@ -41,14 +41,15 @@ render() {
 
 }
 
+
+// Now write your own player class
+// This class requires an update(), render() and
+// a handleInput() method.
 class Player {
      constructor (x, y) {
     this.x = x;
     this.y = y;
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
-this.sprite = 'images/char-boy.png';
+    this.sprite = 'images/char-boy.png';
 
 }
 
@@ -62,31 +63,44 @@ render()  {
 
 handleInput(e)  {
   
-  
+/*   Switch method to handle key inputs and get reactions to them
+    if statement for checking player position to not disapear outside of the field
+*/
         switch (e) {
-            case 'left':
+            case 'left':if(this.x>0)
+            {
                 this.x = this.x - 100
                 console.log(e);
-                break
+            }
+                break;
 
-            case 'up':
+            case 'up':if (this.y > -40)
+            {
                 this.y = this.y - 80
                 console.log(e);
+            }    
                 break;
 
-            case 'right':
+            case 'right': if (this.x < 400)
+            {
                 this.x = this.x + 100
                 console.log(e);
+            }
                 break;
 
-            case 'down':
+            case 'down':if (this.y < 440)
+            {
                 this.y =  this.y + 80
                 console.log(e);
+            }
                 break;
         } 
 };
 
 }
+
+
+
 
 const player = new Player(200,440);
 
