@@ -7,7 +7,8 @@ window.setInterval(function () {
     allEnemies.push(new Enemy(0,300)); 
 }, 2000);
 
-var Enemy = function(x,y) {
+class Enemy { 
+constructor(x,y) {
      this.y = y;
      this.x = x;
     // Variables applied to each of our instances go here,
@@ -20,9 +21,10 @@ var Enemy = function(x,y) {
 };
 
 
+
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
+update(dt) {
     
     this.x = this.x + (Math.random() *(15 - 1 + 1)* dt*25);
     this.y = this.y;
@@ -33,11 +35,14 @@ Enemy.prototype.update = function(dt) {
 };
 
 // Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
+render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-const Player = function (x, y) {
+}
+
+class Player {
+     constructor (x, y) {
     this.x = x;
     this.y = y;
 // Now write your own player class
@@ -47,15 +52,15 @@ this.sprite = 'images/char-boy.png';
 
 }
 
-Player.prototype.update = function(dt)  {
+update(dt)  {
 
 };
 
-Player.prototype.render = function()  {
+render()  {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.handleInput = function(e)  {
+handleInput(e)  {
   
   
         switch (e) {
@@ -80,6 +85,8 @@ Player.prototype.handleInput = function(e)  {
                 break;
         } 
 };
+
+}
 
 const player = new Player(200,440);
 
