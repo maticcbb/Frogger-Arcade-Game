@@ -4,7 +4,7 @@ window.setInterval(function () {
     allEnemies.push(new Enemy(0,140));
     allEnemies.push(new Enemy(0,60));
     allEnemies.push(new Enemy(0,220)); 
-    allEnemies.push(new Enemy(0,300)); 
+    
 }, 2000);
 
 class Enemy { 
@@ -14,8 +14,8 @@ constructor(x,y) {
      this.y = y;
      this.x = x;
      this.sprite = sprite;//enemy image
-     this.height = 101; // enemy's height
-     this.width = 101; //enemy's width
+     this.height = 70; // enemy's height
+     this.width = 70; //enemy's width
 
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -35,24 +35,17 @@ update(dt) {
     this.x = this.x + (Math.random() *(15 - 1 + 1)* dt*25);
     this.y = this.y;
 
-
-    function collisionCheck() {
         allEnemies.forEach(function (enemy) {
             if (enemy.x < player.x + player.width &&
                 enemy.x + enemy.width > player.x &&
                 enemy.y < player.y + player.height &&
                 enemy.height + enemy.y > player.y) {
-                player.x = 202;
-                player.y = 505;
+                player.x = 200;
+                player.y = 390;
                 console.log('collision detected!');
             }
         })
 
-
-
-    }
-
-    
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -76,8 +69,8 @@ class Player {
     this.x = x;
     this.y = y;
     this.sprite = sprite ;
-    this.height = 101; //player's height
-    this.width = 101; //player's width
+    this.height = 70; //player's height
+    this.width = 70; //player's width
 
 }
 
@@ -103,7 +96,7 @@ handleInput(e)  {
                 break;
 
             case 'up':
-                if (this.y > -40) // for checking player position to not disapear outside of the field
+                if (this.y > -10) // for checking player position to not disapear outside of the field
             {
                 this.y = this.y - 80
                 console.log(e);
@@ -119,7 +112,7 @@ handleInput(e)  {
                 break;
 
             case 'down':
-                if (this.y < 440) // for checking player position to not disapear outside of the field
+                if (this.y < 390) // for checking player position to not disapear outside of the field
             {
                 this.y =  this.y + 80
                 console.log(e);
@@ -131,7 +124,7 @@ handleInput(e)  {
 }
 
 
-const player = new Player(200,440);
+const player = new Player(200,390);
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
