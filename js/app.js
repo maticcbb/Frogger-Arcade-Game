@@ -1,11 +1,6 @@
 // Enemies our player must avoid
 const allEnemies = [];
-window.setInterval(function () {
-    allEnemies.push(new Enemy(0,140));
-    allEnemies.push(new Enemy(0,60));
-    allEnemies.push(new Enemy(0,220)); 
-    
-}, 2000);
+
 
 
 //selects the life class elements and adds them in an array
@@ -15,10 +10,11 @@ let life = 3;
 
 class Enemy { 
 
-constructor(x,y) {
+constructor(x,y,speed) {
      const sprite = 'images/enemy-bug.png';
      this.y = y;
      this.x = x;
+     this.speed = speed;
      this.sprite = sprite;//enemy image
      this.height = 70; // enemy's height
      this.width = 70; //enemy's width
@@ -29,7 +25,7 @@ constructor(x,y) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
    
-    allEnemies.push(this);
+    /* allEnemies.push(this); */
 };
 
 
@@ -38,8 +34,17 @@ constructor(x,y) {
 // Parameter: dt, a time delta between ticks
 update(dt) {
     
-    this.x = this.x + (Math.random() *(15 - 1 + 1)* dt*25);
-    this.y = this.y;
+this.x = this.x + (this.speed * dt);
+      if (this.x > 505) {
+          this.x = -100;
+      }
+      if ((min === 2 && sec === 59) || (min === 1 && sec === 59)) {
+          this.speed = this.speed + 1;
+
+      }
+
+   /*  this.x = this.x + (Math.random() *(15 - 1 + 1)* dt*25);
+    this.y = this.y; */
 
         allEnemies.forEach(function (enemy) {
             if (enemy.x < player.x + player.width &&
@@ -140,7 +145,12 @@ handleInput(e)  {
 
 
 const player = new Player(200,390);
-
+allEnemies.push(new Enemy(0, 140, 75));
+allEnemies.push(new Enemy(0, 60,40));
+allEnemies.push(new Enemy(0, 220,105));
+allEnemies.push(new Enemy(0, 140, 85));
+allEnemies.push(new Enemy(0, 220, 95));
+allEnemies.push(new Enemy(0, 60, 68));
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -173,11 +183,12 @@ function countLifes() {
 
 
 let counter;
+let sec = 10;
+let min = 3;
 
 function timeCount() {
     let timer = document.querySelector('.time');
-    let sec = 0;
-    let min = 4;
+    
 
     counter = setInterval(function () {
         //if the 4 minutes expired, stops the timer and calls stopModal()
