@@ -16,11 +16,13 @@ left:450px;
 .time {
 position:absolute;
 top:30px;
+left:650px;
 }
 
 #restart-icon{
-margin-left:30px;
-
+position: absolute;
+left:720px;
+top: 30px;
 }
 
 .hide {

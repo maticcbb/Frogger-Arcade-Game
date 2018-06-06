@@ -70,6 +70,8 @@ render() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+
+
 class Player {
      constructor (x, y) {
 
@@ -83,6 +85,11 @@ class Player {
 }
 
 update(dt)  {
+
+if(this.y <= -10) {
+
+    setTimeout(startBack => { this.y = 390 }, 500);
+}
 
 };
 
@@ -164,4 +171,30 @@ function countLifes() {
     }
 }
 
+
+let counter;
+
+function timeCount() {
+    let timer = document.querySelector('.time');
+    let sec = 0;
+    let min = 4;
+
+    counter = setInterval(function () {
+        //if the 4 minutes expired, stops the timer and calls stopModal()
+        if (min === 0 && sec === 0) {
+            console.log('end of time');//just for debug purpose
+            clearInterval(counter, 1000);
+            
+        } else { //else continues counting down
+            sec--;
+        };
+        if (sec < 0) {
+            min--;
+            sec = 59;
+        };
+        timer.innerText = min + 'm ' + sec + 's';
+    }, 1000);
+}
+
+timeCount();
 
