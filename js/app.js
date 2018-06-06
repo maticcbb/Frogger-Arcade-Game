@@ -9,8 +9,8 @@ window.setInterval(function () {
 
 
 //selects the life class elements and adds them in an array
-let lives = document.querySelectorAll('.life');
-let livesList = Array.from(lives);
+let lifes = document.querySelectorAll('.life');
+let lifesList = Array.from(lifes);
 let life = 3;
 
 class Enemy { 
@@ -48,6 +48,8 @@ update(dt) {
                 enemy.height + enemy.y > player.y) {
                 player.x = 200;
                 player.y = 390;
+                life--;
+                countLifes();
                 console.log('collision detected!');
             }
         })
@@ -151,3 +153,15 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+function countLifes() {
+    if (life === 2) {
+        lifesList[2].classList.add('hide');
+    } else if (life === 1) {
+        lifesList[1].classList.add('hide');
+    } else if (life === 0) {
+        lifesList[0].classList.add('hide');
+    }
+}
+
+
