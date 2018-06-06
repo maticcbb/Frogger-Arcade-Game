@@ -7,6 +7,12 @@ window.setInterval(function () {
     
 }, 2000);
 
+
+//selects the life class elements and adds them in an array
+let lives = document.querySelectorAll('.life');
+let livesList = Array.from(lives);
+let life = 3;
+
 class Enemy { 
 
 constructor(x,y) {
