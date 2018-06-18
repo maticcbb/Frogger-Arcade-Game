@@ -8,43 +8,48 @@ let lifes = document.querySelectorAll('.life');
 let lifesList = Array.from(lifes);
 let life = 3;
 
-class Enemy { 
-
-constructor(x,y,speed) {
-     const sprite = 'images/enemy-bug.png';
-     this.y = y;
-     this.x = x;
-     this.speed = speed;
-     this.sprite = sprite;//enemy image
-     this.height = 70; // enemy's height
-     this.width = 70; //enemy's width
-
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-   
-    /* allEnemies.push(this); */
-};
 
 
+class Enemy {
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-update(dt) {
-    
-this.x = this.x + (this.speed * dt);
-      if (this.x > 505) {
-          this.x = -100;
-      }
-      if ((min === 2 && sec === 59) || (min === 1 && sec === 59)) {
-          this.speed = this.speed + 1;
+    constructor(x, y, speed) {
+        const sprite = 'images/enemy-bug.png';
+        this.y = y;
+        this.x = x;
+        this.speed = speed;
+        this.sprite = sprite; //enemy image
+        this.height = 70; // enemy's height
+        this.width = 70; //enemy's width
 
-      }
+        // Variables applied to each of our instances go here,
+        // we've provided one for you to get started
 
-   /*  this.x = this.x + (Math.random() *(15 - 1 + 1)* dt*25);
-    this.y = this.y; */
+        // The image/sprite for our enemies, this uses
+        // a helper we've provided to easily load images
+
+        /* allEnemies.push(this); */
+    };
+
+
+
+    // Update the enemy's position, required method for game
+    // Parameter: dt, a time delta between ticks
+    update(dt) {
+
+        this.x = this.x + (this.speed * dt);
+        if (this.x > 505) {
+            this.x = -100;
+
+
+
+        }
+        if ((min === 2 && sec === 59) || (min === 1 && sec === 59)) {
+            this.speed = this.speed + 1;
+
+        }
+
+        /*  this.x = this.x + (Math.random() *(15 - 1 + 1)* dt*25);
+         this.y = this.y; */
 
         allEnemies.forEach(function (enemy) {
             if (enemy.x < player.x + player.width &&
@@ -59,15 +64,15 @@ this.x = this.x + (this.speed * dt);
             }
         })
 
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-};
+        // You should multiply any movement by the dt parameter
+        // which will ensure the game runs at the same speed for
+        // all computers.
+    };
 
-// Draw the enemy on the screen, required method for game
-render() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+    // Draw the enemy on the screen, required method for game
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    };
 
 }
 
@@ -76,78 +81,92 @@ render() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
+var points_value = 0;
+let points = document.querySelector('.points');
+
 
 class Player {
-     constructor (x, y) {
+    constructor(x, y) {
 
-    const sprite = 'images/char-boy.png';
-    this.x = x;
-    this.y = y;
-    this.sprite = sprite ;
-    this.height = 70; //player's height
-    this.width = 70; //player's width
+        const sprite = 'images/char-boy.png';
+        this.x = x;
+        this.y = y;
+        this.sprite = sprite;
+        this.height = 70; //player's height
+        this.width = 70; //player's width
 
-}
+    }
 
-update(dt)  {
 
-if(this.y <= -10) {
+    
 
-    setTimeout(startBack => { this.y = 390 }, 500);
-}
+    update(dt) {
 
-};
 
-render()  {
-  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+        
 
-handleInput(e)  {
-  
-// Switch method to handle key inputs and get reactions to them
+        if (this.y <= -10) {
+
+            setTimeout(startBack => {
+                this.y = 390;
+                points_value += 15;
+                points.innerText = "Score :" + points_value;
+            }, 500);
+
+        }
+
+    };
+
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    };
+
+    handleInput(e) {
+
+        // Switch method to handle key inputs and get reactions to them
 
         switch (e) {
             case 'left':
                 if (this.x > 0) // for checking player position to not disapear outside of the field
-            {
-                this.x = this.x - 100
-                console.log(e);
-            }
+                {
+                    this.x = this.x - 100
+                    console.log(e);
+                }
                 break;
 
             case 'up':
                 if (this.y > -10) // for checking player position to not disapear outside of the field
-            {
-                this.y = this.y - 80
-                console.log(e);
-            }    
+                {
+                    this.y = this.y - 80
+                    console.log(e);
+                }
                 break;
 
             case 'right':
                 if (this.x < 400) // for checking player position to not disapear outside of the field
-            {
-                this.x = this.x + 100
-                console.log(e);
-            }
+                {
+                    this.x = this.x + 100
+                    console.log(e);
+                }
                 break;
 
             case 'down':
                 if (this.y < 390) // for checking player position to not disapear outside of the field
-            {
-                this.y =  this.y + 80
-                console.log(e);
-            }
+                {
+                    this.y = this.y + 80
+                    console.log(e);
+                }
                 break;
-        } 
-};
+        }
+    };
 
 }
 
 
-const player = new Player(200,390);
+const player = new Player(200, 390);
 allEnemies.push(new Enemy(0, 140, 75));
-allEnemies.push(new Enemy(0, 60,40));
-allEnemies.push(new Enemy(0, 220,105));
+allEnemies.push(new Enemy(0, 60, 40));
+allEnemies.push(new Enemy(0, 220, 105));
 allEnemies.push(new Enemy(0, 140, 85));
 allEnemies.push(new Enemy(0, 220, 95));
 allEnemies.push(new Enemy(0, 60, 68));
@@ -159,14 +178,14 @@ allEnemies.push(new Enemy(0, 60, 68));
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keyup', function (e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',
         40: 'down'
     };
-  
+
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
@@ -183,19 +202,24 @@ function countLifes() {
 
 
 let counter;
-let sec = 10;
-let min = 3;
+let sec = 5;
+let min = 0;
 
 function timeCount() {
     let timer = document.querySelector('.time');
-    
+
 
     counter = setInterval(function () {
         //if the 4 minutes expired, stops the timer and calls stopModal()
-        if (min === 0 && sec === 0) {
-            console.log('end of time');//just for debug purpose
+        if (min === 0 && sec === 0 || life === 0) {
+           //Shows modal when times ends
+            (function () {
+                modal.style.display = "block";
+                points.style.display = "none";
+            })();
+
             clearInterval(counter, 1000);
-            
+
         } else { //else continues counting down
             sec--;
         };
@@ -208,4 +232,36 @@ function timeCount() {
 }
 
 timeCount();
+
+// MODAL
+
+ function reset() {
+     // noop
+     location.reload(true);
+ }
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+    reset();
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+         reset();
+        modal.style.display = "none";
+    }
+}
+
+
+ 
 
