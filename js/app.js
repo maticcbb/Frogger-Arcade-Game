@@ -4,9 +4,9 @@ const allEnemies = [];
 
 
 //selects the life class elements and adds them in an array
-let lifes = document.querySelectorAll('.life');
-let lifesList = Array.from(lifes);
-let life = 3;
+let lifes = document.querySelectorAll('.life');//select all hearts
+let lifesList = Array.from(lifes); //get all heart and add them to array 
+let life = 3;//life number
 
 
 
@@ -35,21 +35,20 @@ class Enemy {
     // Update the enemy's position, required method for game
     // Parameter: dt, a time delta between ticks
     update(dt) {
-
+        //regular speed from the begining
         this.x = this.x + (this.speed * dt);
         if (this.x > 505) {
             this.x = -100;
 
 
-
+        //after 1 min the bugs speed will increase
         }
         if ((min === 2 && sec === 59) || (min === 1 && sec === 59)) {
             this.speed = this.speed + 1;
 
         }
 
-        /*  this.x = this.x + (Math.random() *(15 - 1 + 1)* dt*25);
-         this.y = this.y; */
+        //collision detector  from https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Collision_detection
 
         allEnemies.forEach(function (enemy) {
             if (enemy.x < player.x + player.width &&
@@ -60,7 +59,7 @@ class Enemy {
                 player.y = 390;
                 life--;
                 countLifes();
-                console.log('collision detected!');
+                console.log('collision detected!');//debbuging 
             }
         })
 
@@ -83,14 +82,15 @@ class Enemy {
 
 var points_value = 0;
 let points = document.querySelector('.points');
+let modal_points = document.querySelector('.modal-score');
 
 
 class Player {
     constructor(x, y) {
 
         const sprite = 'images/char-boy.png';
-        this.x = x;
-        this.y = y;
+        this.x = x;//x position
+        this.y = y;// y position
         this.sprite = sprite;
         this.height = 70; //player's height
         this.width = 70; //player's width
@@ -98,13 +98,9 @@ class Player {
     }
 
 
-    
-
     update(dt) {
 
-
-        
-
+        //If statement for Score counting  if Player reach y position points will increased after 0.5 sec.
         if (this.y <= -10) {
 
             setTimeout(startBack => {
@@ -162,6 +158,7 @@ class Player {
 
 }
 
+//Creating objects of Enemies and Player
 
 const player = new Player(200, 390);
 allEnemies.push(new Enemy(0, 140, 75));
@@ -189,7 +186,7 @@ document.addEventListener('keyup', function (e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
-
+//if collision detected  life image is deleted
 function countLifes() {
     if (life === 2) {
         lifesList[2].classList.add('hide');
@@ -202,20 +199,22 @@ function countLifes() {
 
 
 let counter;
-let sec = 5;
-let min = 0;
-
+let sec = 0;
+let min = 3;
+// for time counting 
 function timeCount() {
     let timer = document.querySelector('.time');
 
 
     counter = setInterval(function () {
-        //if the 4 minutes expired, stops the timer and calls stopModal()
+        //if the 3 minutes expired, stops the timer and calls modal
         if (min === 0 && sec === 0 || life === 0) {
            //Shows modal when times ends
             (function () {
                 modal.style.display = "block";
                 points.style.display = "none";
+                modal_points.innerText = `Your Score :${points_value} `;
+
             })();
 
             clearInterval(counter, 1000);
@@ -241,11 +240,11 @@ timeCount();
  }
 
 // Get the modal
-var modal = document.getElementById('myModal');
+const modal = document.getElementById('myModal');
 
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+const span = document.getElementsByClassName("close")[0];
 
 
 // When the user clicks on <span> (x), close the modal
@@ -254,6 +253,11 @@ span.onclick = function () {
     modal.style.display = "none";
 }
 
+// Restart button 
+const restartBtn = document.getElementById('restart-icon');
+restartBtn.onclick = function() {
+     reset();
+}
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
     if (event.target == modal) {

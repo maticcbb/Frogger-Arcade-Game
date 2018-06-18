@@ -23,6 +23,7 @@ left:650px;
 position: absolute;
 left:720px;
 top: 30px;
+cursor: pointer;
 }
 
 .hide {
