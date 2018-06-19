@@ -1,6 +1,19 @@
-frontend-nanodegree-arcade-game
-===============================
+# Frogger-Arcade-Game
+## About the project 
+This is a project for Udacity Front-End Web Developer Nanodegree Schoolarship . 
+The students are given a starter project that includes art assets and also JS code for the game engine.I have to build the game and add functionality according to the project instroctions.
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Instructions
+To run the game you just have to visit this page : 
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+HOW TO PLAY THE GAME ? 
+
+In game you are the Player and you have to avoid the bugs to get to the other site of the field . Once you reach the water you get some points and you back to the begining . You have to reach points as many as you can  in 3 minutes , but you have only 3 lifes . When you colide with  bugs your life-heart is gone and you back to the beginning . When there's no life hearts left the game ends and your score appears . After clicking on modal with your score the game resets and you can play again or you can use reset button on the top of the page .
+For moving you have to use keyboard arrows so for now you cant play on mobile devices . 
+
+## Sources
+- Starter code : Udacity
+- Modal :  [w3schools](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2)
+- Collision detection :  [MDN web docs](https://developer.mozilla.org/kab/docs/Games/Techniques/2D_collision_detection) 
+
+
