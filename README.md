@@ -4,7 +4,7 @@ This is a project for Udacity Front-End Web Developer Nanodegree Schoolarship .
 The students are given a starter project that includes art assets and also JS code for the game engine.I have to build the game and add functionality according to the project instroctions.
 
 ## Instructions
-To run the game from the webpage you just have to enter this link : https://maticcbb.github.io/Udacity-Frogger-Arcade-Game/
+To run the game from the webpage you just have to enter this link : https://maticcbb.github.io/Frogger-Arcade-Game/
 
 For the local play , just download the repository and open index.html file on your web browser . 
 
